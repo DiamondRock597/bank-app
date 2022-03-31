@@ -31,5 +31,5 @@ export const Navigation: React.FC = () => {
                 ) : <Stack.Screen component={Auth} name='Auth' />}
             </Stack.Navigator>
         </NavigationContainer>
-    )
+    );
 }

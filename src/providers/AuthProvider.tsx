@@ -31,6 +31,8 @@ export const AuthProvider: React.FC = ({ children }) => {
                 displayName: user.displayName || 'No name'
             });
         } catch (error) {
+            console.log({ error });
+
             Alert.alert('Error reg:', error);
         } finally {
             setIsLoading(false);
