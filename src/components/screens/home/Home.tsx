@@ -1,10 +1,12 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from 'react';
+
+import { Layout } from '../../layout/Layout';
+import { Header } from './Header';
 
 export const Home = () => {
     return (
-        <View>
-            <Text>Home</Text>
-        </View>
+        <Layout>
+            <Header />
+        </Layout>
     )
 }

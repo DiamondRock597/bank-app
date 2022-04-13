@@ -3,12 +3,12 @@ import { getAuth, signOut, signInWithEmailAndPassword, createUserWithEmailAndPas
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDYS-Wg6yaRFTuAxhJmukFhuYom6UQbrNA",
-    authDomain: "tinkoff-8d153.firebaseapp.com",
-    projectId: "tinkoff-8d153",
-    storageBucket: "tinkoff-8d153.appspot.com",
-    messagingSenderId: "46821099816",
-    appId: "1:46821099816:web:1b42cce06c97f4ff9f281d"
+    apiKey: "AIzaSyDhXQnlJcZ4yp9wP-sFhPypy8rIVq4a_uU",
+    authDomain: "bank-app-fef82.firebaseapp.com",
+    projectId: "bank-app-fef82",
+    storageBucket: "bank-app-fef82.appspot.com",
+    messagingSenderId: "280714146507",
+    appId: "1:280714146507:web:496e66504803e5dde2614e"
 };
 
 export const app = initializeApp(firebaseConfig);
