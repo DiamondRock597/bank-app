@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import tw from 'tailwind-rn';
@@ -10,6 +11,7 @@ import { Loader } from '../../ui/Loader';
 
 export const Auth = () => {
     const { isLoading, login, register } = useAuth();
+    const { navigate } = useNavigation();
     const [isRegister, setIsRegister] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -47,6 +49,7 @@ export const Auth = () => {
                         </>
                     )}
                 </View>
+                <Button title='Test Firebase features' onPress={() => navigate('More')}/>
             </View>
         </View>
     )

@@ -1,10 +1,20 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { Screens } from '../../../navigation/types';
 
-export const More = () => {
+import { Layout } from '../../layout/Layout';
+import { Button } from '../../ui/Button';
+import { Heading } from '../../ui/Heading';
+import { Padding } from '../../ui/Padding';
+
+export const More: React.FC = () => {
+    const { navigate } = useNavigation();
+
     return (
-        <View>
-            <Text>More</Text>
-        </View>
+        <Layout>
+            <Padding>
+                <Button title='Firestore' onPress={() => navigate(Screens.FirestoreFeature)} />
+            </Padding>
+        </Layout>
     )
 }

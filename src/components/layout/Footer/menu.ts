@@ -17,9 +17,4 @@ export const menu: Array<IFooterItem> = [
         iconName: 'message1',
         title: 'Support'
     },
-    {
-        iconName: 'ellipsis1',
-        title: 'More'
-    },
-
 ];

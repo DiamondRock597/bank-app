@@ -7,10 +7,11 @@ import { Auth } from '../components/screens/auth/Auth';
 import { Home } from '../components/screens/home/Home';
 import { Payments } from '../components/screens/payments/Payments';
 import { Services } from '../components/screens/services/Services';
-import { More } from '../components/screens/more/More';
 import { Support } from '../components/screens/support/Support';
 import { Profile } from '../components/screens/profile/Profile';
 import { Footer } from '../components/layout/Footer/Footer';
+import { Screens } from './types';
+import { FeaturesNavigator } from './FeaturesNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,11 +41,15 @@ export const Navigation: React.FC = () => {
                             <Stack.Screen component={Home} name='Home' />
                             <Stack.Screen component={Payments} name='Payments' />
                             <Stack.Screen component={Services} name='Services' />
-                            <Stack.Screen component={More} name='More' />
                             <Stack.Screen component={Support} name='Support' />
                             <Stack.Screen component={Profile} name='Profile' />
                         </>
-                    ) : <Stack.Screen component={Auth} name='Auth' />}
+                    ) :
+                        <>
+                            <Stack.Screen component={Auth} name='Auth' />
+                            <Stack.Screen component={FeaturesNavigator} name='More' />
+                        </>
+                    }
                 </Stack.Navigator>
             </NavigationContainer>
             {user && name && <Footer navigate={ref.navigate} currentRoute={name} />}
