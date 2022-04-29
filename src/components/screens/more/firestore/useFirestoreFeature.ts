@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, limit, query } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, limit, query, updateDoc, writeBatch } from 'firebase/firestore';
 import { Alert } from 'react-native';
 
 import { db } from '../../../../firebase';
@@ -6,7 +6,7 @@ import { db } from '../../../../firebase';
 export const useFirestoreFeature = () => {
     const oneTimeRead = () => {
         Alert.prompt('Choose index of user', '', async (userIndex: string) => {
-            const fullCollection = await getDocs(query(collection(db, 'users'), limit(1)));
+            const fullCollection = await getDocs(query(collection(db, 'users')));
             const docId = fullCollection.docs.find((_, index) => index == Number(userIndex))?.id;
             const firstDoc = await getDoc(doc(db, 'users', docId!));
 
@@ -19,7 +19,8 @@ export const useFirestoreFeature = () => {
     const addNewUser = () => {
         Alert.prompt('Username', 'Enter username', async (username: string) => {
             const newUser = await addDoc(collection(db, 'users'), {
-                displayName: username
+                displayName: username,
+                _id: Math.floor(Math.random() * 1000),
             });
             const firstDoc = await getDoc(doc(db, 'users', newUser.id));
 
@@ -27,8 +28,43 @@ export const useFirestoreFeature = () => {
         });
     }
 
+    const updateUser = () => {
+        //there should be transaction from firestore
+        Alert.prompt('Update username of first user', 'Enter display name', async (username: string) => { 
+            const fullCollection = await getDocs(query(collection(db, 'users')));
+            const docId = fullCollection.docs.find((doc) => doc.id)?.id;
+
+            const updatedDoc = doc(db, 'users', docId!);
+
+            await updateDoc(updatedDoc, {
+                displayName: username
+            });
+        });
+    }
+
+    const deleteUser = async () => {
+        const fullCollection = await getDocs(query(collection(db, 'users'), limit(1)));
+        const docId = fullCollection.docs.find((doc) => doc.id)?.id;
+
+        const deletedDoc = doc(db, 'users', docId!);
+
+        await deleteDoc(deletedDoc);
+    }
+
+    const batchDeleteAllUsers = async () => {
+        const fullCollection = await getDocs(query(collection(db, 'users')));
+
+        const batch = writeBatch(db);
+
+        fullCollection.forEach((doc) => batch.delete(doc.ref));
+        return batch.commit();
+    }
+
     return {
+        updateUser,
         oneTimeRead,
-        addNewUser
+        addNewUser,
+        deleteUser,
+        batchDeleteAllUsers
     }
 }
