@@ -6,10 +6,12 @@ export type RootStackParamList = {
     Support: undefined,
     Payments: undefined,
     FirestoreFeature: undefined,
-    More: undefined
+    More: undefined,
+    CloudFunctions: undefined
 }
 
 export enum Screens {
     More = 'More',
-    FirestoreFeature = 'FirestoreFeature'
+    FirestoreFeature = 'FirestoreFeature',
+    CloudFunctions = 'CloudFunctions'
 }

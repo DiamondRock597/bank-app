@@ -14,6 +14,7 @@ export const More: React.FC = () => {
         <Layout>
             <Padding>
                 <Button title='Firestore' onPress={() => navigate(Screens.FirestoreFeature)} />
+                <Button title='Cloud functions' onPress={() => navigate(Screens.CloudFunctions)} />
             </Padding>
         </Layout>
     )
