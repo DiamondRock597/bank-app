@@ -1,9 +1,21 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, limit, query, updateDoc, writeBatch } from 'firebase/firestore';
+import { User } from 'firebase/auth';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, limit, onSnapshot, query, updateDoc, writeBatch } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 
 import { db } from '../../../../firebase';
 
 export const useFirestoreFeature = () => {
+    const [users, setUsers] = useState<Array<User>>([]);
+
+    useEffect(() => onSnapshot(query(collection(db, 'users')), (snapshot) => {
+        const newUsers = snapshot.docs.map((doc) => ({
+            _id: doc.id,
+            ...doc.data()
+        }));
+        setUsers(newUsers);
+    }), []);
+
     const oneTimeRead = () => {
         Alert.prompt('Choose index of user', '', async (userIndex: string) => {
             const fullCollection = await getDocs(query(collection(db, 'users')));
@@ -30,7 +42,7 @@ export const useFirestoreFeature = () => {
 
     const updateUser = () => {
         //there should be transaction from firestore
-        Alert.prompt('Update username of first user', 'Enter display name', async (username: string) => { 
+        Alert.prompt('Update username of first user', 'Enter display name', async (username: string) => {
             const fullCollection = await getDocs(query(collection(db, 'users')));
             const docId = fullCollection.docs.find((doc) => doc.id)?.id;
 
@@ -65,6 +77,7 @@ export const useFirestoreFeature = () => {
         oneTimeRead,
         addNewUser,
         deleteUser,
+        users,
         batchDeleteAllUsers
     }
 }

@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { getMessaging } from 'firebase/messaging';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDhXQnlJcZ4yp9wP-sFhPypy8rIVq4a_uU",
@@ -22,3 +23,5 @@ export const login = (email: string, password: string) => signInWithEmailAndPass
 export const logout = () => signOut(auth);
 
 export const db = getFirestore();
+
+export const messaging = getMessaging();
