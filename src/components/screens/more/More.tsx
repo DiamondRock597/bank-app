@@ -13,7 +13,8 @@ export const More: React.FC = () => {
     return (
         <Layout>
             <Padding>
-                <Button title='Firestore' onPress={() => navigate(Screens.FirestoreFeature)} />
+                <Button title='Firestore' onPress={() => navigate(Screens.Firestore)} />
+                <Button title='Storage' onPress={() => navigate(Screens.Storage)} />
             </Padding>
         </Layout>
     )

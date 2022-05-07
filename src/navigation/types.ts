@@ -7,9 +7,11 @@ export type RootStackParamList = {
     Payments: undefined,
     FirestoreFeature: undefined,
     More: undefined
+    StorageFeature: undefined
 }
 
 export enum Screens {
     More = 'More',
-    FirestoreFeature = 'FirestoreFeature'
+    Firestore = 'FirestoreFeature',
+    Storage = 'StorageFeature',
 }
